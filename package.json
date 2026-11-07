@@ -1,7 +1,7 @@
 {
-  "name": "discount-hub-a11y-playground",
+  "name": "fontend-developer-playground",
   "version": "1.0.0",
-  "description": "Discount Hub - Frontend & Accessibility Playground built with React, Next.js, Redux Toolkit, TypeScript, Bootstrap, and SCSS",
+  "description": "Playground built with React, Next.js, Redux Toolkit, TypeScript, Bootstrap, and SCSS",
   "private": true,
   "scripts": {
     "dev": "next dev",

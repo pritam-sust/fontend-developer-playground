@@ -35,7 +35,7 @@ An enterprise-grade, accessible web application demonstrating senior frontend ar
 ## 3. Project Structure
 
 ```plaintext
-discount-hub-a11y-playground/
+fontend-developer-playground/
 ├── app/
 │   ├── layout.tsx              # Root HTML5 layout, Skip-to-content link, metadata
 │   ├── page.tsx                # Main dashboard orchestrating all demo features
