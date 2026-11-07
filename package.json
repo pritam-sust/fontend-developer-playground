@@ -1,0 +1,28 @@
+{
+  "name": "discount-hub-a11y-playground",
+  "version": "1.0.0",
+  "description": "Discount Hub - Frontend & Accessibility Playground built with React, Next.js, Redux Toolkit, TypeScript, Bootstrap, and SCSS",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.14.0",
+    "bootstrap": "^5.3.8",
+    "jquery": "^4.0.0",
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.3.1",
+    "sass": "^1.108.1"
+  },
+  "devDependencies": {
+    "@types/jquery": "^4.0.1",
+    "@types/node": "^26.6.6",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.6.3"
+  }
+}

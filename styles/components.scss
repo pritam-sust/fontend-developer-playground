@@ -1,0 +1,160 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+// Dashboard Header
+.hub-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-bottom: 3px solid $primary;
+}
+
+// Demo Card Styling
+.demo-card {
+  @include card-surface;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .demo-card-header {
+    padding: 1.25rem 1.5rem 0.75rem;
+    border-bottom: 1px solid $light-border;
+  }
+
+  .demo-card-body {
+    padding: 1.5rem;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .demo-card-footer {
+    padding: 0.75rem 1.5rem;
+    background-color: #f8fafc;
+    border-top: 1px solid $light-border;
+    border-bottom-left-radius: $border-radius-md;
+    border-bottom-right-radius: $border-radius-md;
+  }
+}
+
+// Accessible Modal Backdrop & Container
+.a11y-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.a11y-modal-dialog {
+  background: #ffffff;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-modal;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1051;
+  outline: none;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.alert-variant {
+    max-width: 480px;
+    border-top: 5px solid $danger;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// ARIA Tag Badge
+.aria-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+// Live Region Feed Visualizer
+.live-region-simulator {
+  background-color: #0f172a;
+  color: #f8fafc;
+  border-radius: $border-radius-md;
+  padding: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  min-height: 140px;
+  max-height: 220px;
+  overflow-y: auto;
+
+  .feed-item {
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.35rem;
+
+    &.polite {
+      background-color: rgba(37, 99, 235, 0.2);
+      border-left: 3px solid #3b82f6;
+    }
+
+    &.assertive {
+      background-color: rgba(185, 28, 28, 0.25);
+      border-left: 3px solid #ef4444;
+      font-weight: 600;
+    }
+  }
+}
+
+// Discount Code Card
+.discount-item-card {
+  border: 1px dashed #cbd5e1;
+  border-radius: $border-radius-sm;
+  padding: 0.85rem 1rem;
+  background-color: #ffffff;
+  transition: $transition-standard;
+
+  &:hover {
+    border-color: $primary;
+    background-color: #f8fafc;
+  }
+}
+
+// Isolated jQuery Container
+.jquery-sandbox-box {
+  border: 2px dashed #0284c7;
+  border-radius: $border-radius-md;
+  padding: 1.25rem;
+  background-color: #f0f9ff;
+}
+
+// Keyboard key indicator (Kbd)
+kbd {
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  border-bottom: 2px solid #94a3b8;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
