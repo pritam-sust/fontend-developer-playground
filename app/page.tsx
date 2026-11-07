@@ -8,6 +8,7 @@ import { HiddenContentDemoCard } from '@/features/hidden-content/HiddenContentDe
 import { ReduxStateInspectorCard } from '@/features/redux-state/ReduxStateInspectorCard';
 import { JQueryDemoCard } from '@/features/jquery/JQueryDemoCard';
 import { A11yMatrixCard } from '@/features/a11y-matrix/A11yMatrixCard';
+import { AttributeGuideCard } from '@/features/attribute-guide/AttributeGuideCard';
 import { Icon } from '@/components/common/Icon';
 
 export default function HomePage() {
@@ -93,6 +94,11 @@ export default function HomePage() {
                   A11y Audit Matrix
                 </a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link btn btn-sm btn-outline-light text-white py-1 px-3" href="#attribute-architecture-guide">
+                  Attribute Dictionary
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -151,6 +157,13 @@ export default function HomePage() {
           <section className="row g-4 mb-4" aria-label="Accessibility Compliance Matrix">
             <div className="col-12">
               <A11yMatrixCard />
+            </div>
+          </section>
+
+          {/* Row 5: Attribute & Architecture Dictionary */}
+          <section className="row g-4 mb-4" aria-label="Attribute and Framework Architecture Dictionary">
+            <div className="col-12">
+              <AttributeGuideCard />
             </div>
           </section>
         </div>

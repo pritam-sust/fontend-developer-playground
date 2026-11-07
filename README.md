@@ -131,12 +131,16 @@ npm run start
 
 ## 5. Architectural Features & Technical Implementation
 
-### Feature 1: Discount Reveal Component (`role="dialog"`)
-- **Trigger**: Button with explicit `aria-label="Reveal Discounts"`, `aria-haspopup="dialog"`, and `aria-expanded`.
-- **Keyboard Trapping**: The custom `useFocusTrap` hook intercepts `Tab` and `Shift+Tab`, cycling focus exclusively through interactive elements inside the modal.
-- **Focus Restoration**: The custom `useFocusReturn` hook captures `document.activeElement` when opened and immediately returns focus to the trigger button when closed.
-- **Dismissibility**: Pressing `Escape` or clicking the semi-transparent backdrop dismisses the dialog.
-- **Background Interaction**: While open, background interactions are disabled via the modal backdrop and focus trap.
+### Feature 1: Discount Dialogs (Modal vs. Non-Modal)
+- **Modal Dialog (`aria-modal="true"`)**:
+  - Traps keyboard focus inside dialog boundaries with `useFocusTrap` (`Tab` and `Shift+Tab` loop).
+  - Background is inert and interaction is blocked by the backdrop overlay.
+  - Automatically restores focus to the trigger button upon close via `useFocusReturn`.
+  - Dismissible via `Escape` or clicking outside.
+- **Non-Modal Dialog (`aria-modal="false"`)**:
+  - Implements a modeless floating discount dock (`components/dialog/NonModalDrawer.tsx`).
+  - Background remains fully interactive; users can click buttons and submit forms concurrently.
+  - Keyboard focus is **not trapped**; users can freely `Tab` out to page elements without dismissing the drawer.
 
 ### Feature 2: Alert Dialog (`role="alertdialog"`)
 - **Urgent Action**: Demands user confirmation before revoking all active discount vouchers and clearing session states.
@@ -149,11 +153,13 @@ npm run start
 - **DOM Persistence**: Live regions are permanently mounted into the DOM inside `LiveRegionAnnouncer` rather than dynamically injected. Injecting `aria-live` containers dynamically at the moment of speech can cause assistive tools like VoiceOver or NVDA to drop announcements.
 - **Visual Log Simulator**: Provides sighted engineers and auditors a real-time speech log showing the exact message and timestamps dispatched to assistive technology.
 
-### Feature 4: Hidden Content Demonstration (`aria-hidden`)
-- **Decorative Elements**: Decorative SVG icons use `aria-hidden="true"` and `focusable="false"` to prevent screen readers from announcing superfluous &ldquo;graphic, unlabelled image&rdquo; elements.
-- **Accessible Text Replacement**: Uses the `.visually-hidden-custom` CSS class (clip-path/rect technique) to provide rich textual context for screen readers while presenting clean icon-only designs to sighted users.
-- **Interactive Safeguard**: Clearly illustrates why interactive elements (`<button>`, `<a>`, `<input>`) must **never** receive `aria-hidden="true"`, preventing the anti-pattern of keyboard-focusable elements that remain invisible to assistive technology.
-- **A11y Inspector Mode**: An interactive toggle lets developers switch between the **Sighted User View** and the **Screen Reader Perception View** to audit accessibility trees in real time.
+### Feature 4: Hidden Content & Dynamic Disclosure (`aria-hidden`)
+- **`aria-hidden="true"`**: Applied to decorative SVG icons (`focusable="false"`) and collapsed sections to completely remove them from the screen reader accessibility tree.
+- **`aria-hidden="false"`**: Dynamically applied to revealable offer drawers and secret discount badges when expanded by the user, explicitly exposing them to assistive technologies.
+- **Architectural Boundary**:
+  - `aria-modal` governs **document-level inertness** (whether content outside a dialog is accessible).
+  - `aria-hidden` governs **element-level subtree visibility** (whether a specific DOM node and its descendants exist in the a11y tree).
+- **A11y Inspector Mode**: Interactive toggle lets developers compare the "Sighted User View" against the "Screen Reader Accessibility Tree Perception".
 
 ### Feature 5: Redux State Management (Redux Toolkit)
 - **Centralized Store**: Built with `configureStore` and modular slices (`modalSlice`, `alertSlice`, `announcementSlice`, `discountSlice`).
@@ -168,6 +174,10 @@ npm run start
   3. All jQuery queries are strictly scoped inside the container (`$root = $(containerRef.current)`), never against `document` or global selectors.
   4. jQuery operations demonstrate `slideToggle()` and `toggleClass()` with live counter feedback.
   5. On component unmount, `useEffect` cleanly unbinds all listeners (`$toggleBtn.off('click')`), eliminating memory leaks.
+
+### Feature 7: Attribute & Architecture Dictionary
+- Comprehensive in-app dictionary with category filtering (`All`, `React.js`, `Next.js 14`, `Bootstrap 5`, `WAI-ARIA`) and live search.
+- Documents exact syntax, architectural purpose, and production examples for every attribute used throughout the codebase.
 
 ---
 

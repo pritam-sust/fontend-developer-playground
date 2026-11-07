@@ -35,6 +35,20 @@ const matrixData: A11yItem[] = [
     status: 'Verified',
   },
   {
+    attribute: 'aria-modal="false"',
+    purpose: 'Explicitly declares a modeless dialog where background content remains fully interactive',
+    implementation: 'Attached to floating discount drawer; keyboard users can tab freely to page content',
+    location: 'components/dialog/NonModalDrawer.tsx, Feature 1',
+    status: 'Verified',
+  },
+  {
+    attribute: 'aria-hidden="false"',
+    purpose: 'Explicitly exposes dynamically disclosed content to the assistive tech tree',
+    implementation: 'Dynamically set when secret promo accordion is expanded by the user',
+    location: 'features/hidden-content/HiddenContentDemoCard.tsx, Feature 4',
+    status: 'Verified',
+  },
+  {
     attribute: 'role="alertdialog"',
     purpose: 'Identifies urgent confirmation dialog requiring immediate response',
     implementation: 'Container role on destructive reset prompt with safe Cancel focus',
